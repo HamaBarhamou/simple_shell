@@ -15,22 +15,24 @@
 
 void	_executecmd(char *cmd)
 {
-	int status = 0;
+	int status;
 	pid_t pid = 0;
 	int exec_ret = 0;
 
 	pid = fork();
+	if (pid == -1)
+	{
+		perror("Error:");
+		return;
+	}
 	if (pid == 0)
 	{
-		UNUSED(cmd);
-	}
-	else if (pid > 0)
-	{
+		/* execution de la commande */
 		UNUSED(cmd);
 	}
 	else
 	{
-		exit(EXIT_FAILURE);
+		wait(&status);
 	}
 	UNUSED(cmd);
 	UNUSED(exec_ret);

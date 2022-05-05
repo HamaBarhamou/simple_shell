@@ -3,21 +3,30 @@
 #include <stdlib.h>
 #include <string.h>
 #include "main.h"
+#include <stdio.h>
 
-#define Buff_Size 1024
 
 /**
  * main - check the code
- *
+ *@argc: the number of the argument
+ *@argv: the argument list of the table
+ *@env:  the variable of the environement
  * Return: Always 0.
  */
-int main(void)
+int main(int argc, char **argv, char **env)
 {
 	char *line = NULL;
 	size_t len = 0;
 	ssize_t read;
-	int cpt = 0, i = 0;
+	int i = 0;
 
+	/**
+	*while (env[i] != NULL)
+	*{
+	*	printf("env: %s\n",env[i]);
+	*	i++;
+	*}
+	*/
 
 	_puts("($) ");
 	while ((read = getline(&line, &len, stdin)) != -1)
@@ -28,17 +37,17 @@ int main(void)
 		if (_strcmp("exit", line) == 0)
 		{
 			free(line);
-			for (i = 0; i < cpt; i++)
-				exit(0);
+			exit(0);
 		}
-		
 
 		_executecmd(line);
-		cpt++;
 	}
 
 	if (line)
 		free(line);
 
+	UNUSED(argc);
+	UNUSED(argv);
+	UNUSED(env);
 	return (0);
 }
