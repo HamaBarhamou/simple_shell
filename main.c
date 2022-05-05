@@ -39,7 +39,6 @@ int main(int argc, char **argv, char **env)
 			free(line);
 			exit(0);
 		}
-
 		_executecmd(line);
 	}
 
@@ -49,5 +48,6 @@ int main(int argc, char **argv, char **env)
 	UNUSED(argc);
 	UNUSED(argv);
 	UNUSED(env);
+	UNUSED(i);
 	return (0);
 }

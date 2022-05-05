@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "main.h"
 
 /**
@@ -18,22 +19,31 @@ void	_executecmd(char *cmd)
 	int status;
 	pid_t pid = 0;
 	int exec_ret = 0;
+	char *cmds[] = {"ls", (char *) 0};
 
 	pid = fork();
-	if (pid == -1)
+
+	if (pid < 0)
 	{
 		perror("Error:");
 		return;
 	}
-	if (pid == 0)
+	else if (pid == 0)
 	{
 		/* execution de la commande */
-		UNUSED(cmd);
+		exec_ret = execve("/bin/ls", cmds, NULL);
+
+		if (exec_ret < 0)
+		{
+			perror("execve a echoue");
+			exit(EXIT_FAILURE);
+		}
 	}
 	else
 	{
 		wait(&status);
 	}
+	_puts("($) ");
 	UNUSED(cmd);
 	UNUSED(exec_ret);
 	UNUSED(status);
