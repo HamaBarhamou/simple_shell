@@ -1,3 +1,9 @@
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <errno.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include "main.h"
 
 /**
@@ -7,9 +13,26 @@
  * Return: 1 or 0
  */
 
-int	_executecmd(char *cmd)
+void	_executecmd(char *cmd)
 {
-	_puts("Reste a implementer l'execution de la commande dans execute.c \n");
+	int status = 0;
+	pid_t pid = 0;
+	int exec_ret = 0;
+
+	pid = fork();
+	if (pid == 0)
+	{
+		UNUSED(cmd);
+	}
+	else if (pid > 0)
+	{
+		UNUSED(cmd);
+	}
+	else
+	{
+		exit(EXIT_FAILURE);
+	}
 	UNUSED(cmd);
-	return (1);
+	UNUSED(exec_ret);
+	UNUSED(status);
 }

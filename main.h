@@ -7,6 +7,7 @@ int _putchar(char c);
 int _strlen(char *s);
 void _puts(char *str);
 int _strcmp(char *s1, char *s2);
-int _executecmd(char *cmd);
+void _executecmd(char *cmd);
+void ft_putnbr(int nb);
 
 #endif /* MAIN_H */

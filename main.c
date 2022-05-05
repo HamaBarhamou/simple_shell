@@ -13,24 +13,32 @@
  */
 int main(void)
 {
-	ssize_t r;
-	char *buff;
+	char *line = NULL;
+	size_t len = 0;
+	ssize_t read;
+	int cpt = 0, i = 0;
 
-	while (r)
+
+	_puts("($) ");
+	while ((read = getline(&line, &len, stdin)) != -1)
 	{
+		line[_strlen(line) - 1] = '\0';
+
 		_puts("($) ");
-		buff = malloc(sizeof(char) * Buff_Size + 1);
-		r = read(1, buff, Buff_Size);
-		buff[_strlen(buff) - 1] = '\0';
-
-		if (_strcmp("exit", buff) == 0)
+		if (_strcmp("exit", line) == 0)
 		{
-			free(buff);
-			exit(0);
+			free(line);
+			for (i = 0; i < cpt; i++)
+				exit(0);
 		}
+		
 
-		_executecmd(buff);
-		/*_puts(buff);*/
+		_executecmd(line);
+		cpt++;
 	}
+
+	if (line)
+		free(line);
+
 	return (0);
 }
