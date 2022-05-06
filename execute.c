@@ -33,12 +33,14 @@ void shell_1_0(char *cmd, char **env)
 /**
  * _executecmd - a function ...
  * @cmd: the chaine
+ * @argc: the number of arguments
  * @argv: the programme arguments
+ * @env: the environement programme execute
  *
  * Return: 1 or 0
  */
 
-void	_executecmd(char *cmd, char **argv)
+void	_executecmd(char *cmd, int argc, char **argv, char **env)
 {
 	int status;
 	pid_t pid = 0;
@@ -46,7 +48,7 @@ void	_executecmd(char *cmd, char **argv)
 	char *cmds[] = {"", (char *) 0};
 	char *cmdsrc;
 
-	shell_1_0(cmd, argv);
+	shell_1_0(cmd, env);
 
 	cmds[0] = cmd;
 	cmdsrc = (char *) malloc((_strlen(cmd) + 6) * sizeof(char));
@@ -76,7 +78,7 @@ void	_executecmd(char *cmd, char **argv)
 		wait(&status);
 	}
 	_puts("($) ");
-	UNUSED(cmd);
+	UNUSED(argc);
 	UNUSED(exec_ret);
 	UNUSED(status);
 }
