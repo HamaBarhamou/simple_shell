@@ -32,14 +32,13 @@ int main(int argc, char **argv, char **env)
 	while ((read = getline(&line, &len, stdin)) != -1)
 	{
 		line[_strlen(line) - 1] = '\0';
-
 		_puts("($) ");
 		if (_strcmp("exit", line) == 0)
 		{
 			free(line);
 			exit(0);
 		}
-		_executecmd(line);
+		_executecmd(line, argv);
 	}
 
 	if (line)
