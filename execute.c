@@ -8,6 +8,29 @@
 #include "main.h"
 
 /**
+ * shell_1_0 - function
+ *@cmd: the command input of user
+ *@env: the environment
+ *
+ *Return: void
+ */
+
+void shell_1_0(char *cmd, char **env)
+{
+	if (_strcmp("env", cmd) == 0)
+	{
+		int i = 0;
+
+		while (env[i] != NULL)
+		{
+			_puts(env[i]);
+			_putchar('\n');
+			i++;
+		}
+	}
+}
+
+/**
  * _executecmd - a function ...
  * @cmd: the chaine
  * @argv: the programme arguments
@@ -22,6 +45,8 @@ void	_executecmd(char *cmd, char **argv)
 	int exec_ret = 0;
 	char *cmds[] = {"", (char *) 0};
 	char *cmdsrc;
+
+	shell_1_0(cmd, argv);
 
 	cmds[0] = cmd;
 	cmdsrc = (char *) malloc((_strlen(cmd) + 6) * sizeof(char));

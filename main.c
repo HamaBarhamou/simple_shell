@@ -38,7 +38,7 @@ int main(int argc, char **argv, char **env)
 			free(line);
 			exit(0);
 		}
-		_executecmd(line, argv);
+		_executecmd(line, env);
 	}
 
 	if (line)
