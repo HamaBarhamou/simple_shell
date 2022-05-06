@@ -1,6 +1,7 @@
 #ifndef LIST_H
 #define LIST_H
 
+#include <stdio.h>
 #define UNUSED(x) (void)(x)
 
 int _putchar(char c);
@@ -10,5 +11,7 @@ int _strcmp(char *s1, char *s2);
 void _executecmd(char *cmd, int argc, char **argv, char **env);
 void ft_putnbr(int nb);
 char *_strcat(char *dest, char *src);
+char *_strtok(char *str, const char *delim);
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 
 #endif /* MAIN_H */
