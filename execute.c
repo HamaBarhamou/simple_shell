@@ -45,12 +45,10 @@ void	_executecmd(char **cmd, int argc, char **argv, char **env)
 	int status;
 	pid_t pid = 0;
 	int exec_ret = 0;
-	char *cmds[] = {"", (char *) 0};
 	char *cmdsrc;
+	int i = 0;
 
 	shell_1_0(cmd[0], env);
-
-	/*cmds[0] = cmd;*/
 	cmdsrc = (char *) malloc((_strlen(cmd[0]) + 6) * sizeof(char));
 	cmdsrc = _strcat(cmdsrc, "/bin/");
 	cmdsrc = _strcat(cmdsrc, cmd[0]);
@@ -64,7 +62,6 @@ void	_executecmd(char **cmd, int argc, char **argv, char **env)
 	}
 	else if (pid == 0)
 	{
-		/* execution de la commande */
 		exec_ret = execve(cmdsrc, cmd, NULL);
 
 		if (exec_ret < 0)
@@ -77,9 +74,12 @@ void	_executecmd(char **cmd, int argc, char **argv, char **env)
 	{
 		wait(&status);
 	}
+
+	while (cmd[i] != NULL)
+	{
+		free(cmd[i]);
+		i++;
+	}
 	_puts("($) ");
 	UNUSED(argc);
-	UNUSED(exec_ret);
-	UNUSED(status);
-	UNUSED(cmds);
 }
