@@ -5,6 +5,31 @@
 #include "main.h"
 #include <stdio.h>
 
+/**
+ * _arguments - a function
+ * @str: the chaine of the caractere
+ * @arglist: the list of list argument
+ * Return: the chaine
+ */
+
+char **_arguments(char *str, char **arglist)
+{
+	char *cmd = strdup(str);
+	char *arg;
+	const char *separator = " ";
+	int i = 0;
+
+	arg = strtok(cmd, separator);
+	while (arg != NULL)
+	{
+		arglist[i] = strdup(arg);
+		i++;
+		arg = strtok(NULL, separator);
+	}
+	arglist[i] = NULL;
+	free(cmd);
+	return (arglist);
+}
 
 /**
  * main - check the code
@@ -19,14 +44,7 @@ int main(int argc, char **argv, char **env)
 	size_t len = 0;
 	ssize_t read;
 	int i = 0;
-
-	/**
-	*while (env[i] != NULL)
-	*{
-	*	printf("env: %s\n",env[i]);
-	*	i++;
-	*}
-	*/
+	char *arg_list[MAX_LINE];
 
 	_puts("($) ");
 	while ((read = getline(&line, &len, stdin)) != -1)
@@ -38,7 +56,7 @@ int main(int argc, char **argv, char **env)
 			free(line);
 			exit(0);
 		}
-		_executecmd(line, argc, argv, env);
+		_executecmd(_arguments(line, arg_list), argc, argv, env);
 	}
 
 	if (line)
@@ -48,5 +66,6 @@ int main(int argc, char **argv, char **env)
 	UNUSED(argv);
 	UNUSED(env);
 	UNUSED(i);
+	UNUSED(arg_list);
 	return (0);
 }

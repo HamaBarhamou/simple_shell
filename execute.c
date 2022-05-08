@@ -40,7 +40,7 @@ void shell_1_0(char *cmd, char **env)
  * Return: 1 or 0
  */
 
-void	_executecmd(char *cmd, int argc, char **argv, char **env)
+void	_executecmd(char **cmd, int argc, char **argv, char **env)
 {
 	int status;
 	pid_t pid = 0;
@@ -48,12 +48,12 @@ void	_executecmd(char *cmd, int argc, char **argv, char **env)
 	char *cmds[] = {"", (char *) 0};
 	char *cmdsrc;
 
-	shell_1_0(cmd, env);
+	shell_1_0(cmd[0], env);
 
-	cmds[0] = cmd;
-	cmdsrc = (char *) malloc((_strlen(cmd) + 6) * sizeof(char));
+	/*cmds[0] = cmd;*/
+	cmdsrc = (char *) malloc((_strlen(cmd[0]) + 6) * sizeof(char));
 	cmdsrc = _strcat(cmdsrc, "/bin/");
-	cmdsrc = _strcat(cmdsrc, cmd);
+	cmdsrc = _strcat(cmdsrc, cmd[0]);
 
 	pid = fork();
 
@@ -65,7 +65,7 @@ void	_executecmd(char *cmd, int argc, char **argv, char **env)
 	else if (pid == 0)
 	{
 		/* execution de la commande */
-		exec_ret = execve(cmdsrc, cmds, NULL);
+		exec_ret = execve(cmdsrc, cmd, NULL);
 
 		if (exec_ret < 0)
 		{
@@ -81,4 +81,5 @@ void	_executecmd(char *cmd, int argc, char **argv, char **env)
 	UNUSED(argc);
 	UNUSED(exec_ret);
 	UNUSED(status);
+	UNUSED(cmds);
 }
