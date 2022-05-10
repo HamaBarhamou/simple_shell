@@ -43,18 +43,21 @@ int main(int argc, char **argv, char **env)
 	char *line = NULL;
 	size_t len = 0;
 	ssize_t read;
-	int i = 0;
+	int i = 0, status = 0, _len;
 	char *arg_list[MAX_LINE];
 
 	_puts("($) ");
 	while ((read = getline(&line, &len, stdin)) != -1)
 	{
-		line[_strlen(line) - 1] = '\0';
+		_len = _strlen(line);
+		line[_len - 1] = '\0';
 		_puts("($) ");
-		if (_strcmp("exit", line) == 0)
+		if (strncmp("exit", line, 4) == 0)
 		{
+			if (_len > 4)
+				status = atoi(&line[5]);
 			free(line);
-			exit(0);
+			exit(status);
 		}
 		_executecmd(_arguments(line, arg_list), argc, argv, env);
 	}
