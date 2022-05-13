@@ -5,6 +5,21 @@
 #define UNUSED(x) (void)(x)
 #define MAX_LINE 2024
 
+
+/**
+ * struct instruction_l - instruction linked list
+ * @str: the string
+ * @next: point to the nex node
+ *
+ * Description: instruction linked list node structure
+ * for holberton project
+ */
+typedef struct instruction_l
+{
+	char *str;
+	struct instruction_l *next;
+} instruction_l;
+
 int _putchar(char c);
 int _strlen(char *s);
 void _puts(char *str);
@@ -14,5 +29,6 @@ void ft_putnbr(int nb);
 char *_strcat(char *dest, char *src);
 char *_strtok(char *str, const char *delim);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+instruction_l *add_nodeinstruction_end(instruction_l **head, char *str);
 
-#endif /* MAIN_H */
+#endif
