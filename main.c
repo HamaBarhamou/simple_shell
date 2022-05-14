@@ -19,7 +19,7 @@ char **_arguments(char *str, char **arglist)
 	const char *separator = " ";
 	int i = 0;
 
-	arg = strtok(cmd, separator);
+	arg = _strtok(cmd, separator);
 	while (arg != NULL)
 	{
 		arglist[i] = strdup(arg);
