@@ -14,7 +14,7 @@
 
 char **_arguments(char *str, char **arglist)
 {
-	char *cmd = strdup(str);
+	char *cmd = _strdup(str);
 	char *arg;
 	const char *separator = " ";
 	int i = 0;
@@ -22,9 +22,9 @@ char **_arguments(char *str, char **arglist)
 	arg = _strtok(cmd, separator);
 	while (arg != NULL)
 	{
-		arglist[i] = strdup(arg);
+		arglist[i] = _strdup(arg);
 		i++;
-		arg = strtok(NULL, separator);
+		arg = _strtok(NULL, separator);
 	}
 	arglist[i] = NULL;
 	free(cmd);
