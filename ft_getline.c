@@ -17,5 +17,5 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 	UNUSED(n);
 	UNUSED(stream);
 
-	return (0);
+	return (getline(lineptr, n, stream));
 }

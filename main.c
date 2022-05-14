@@ -19,7 +19,7 @@ char **_arguments(char *str, char **arglist)
 	const char *separator = " ";
 	int i = 0;
 
-	arg = strtok(cmd, separator);
+	arg = _strtok(cmd, separator);
 	while (arg != NULL)
 	{
 		arglist[i] = strdup(arg);
@@ -47,7 +47,7 @@ int main(int argc, char **argv, char **env)
 	char *arg_list[MAX_LINE];
 
 	_puts("($) ");
-	while ((read = getline(&line, &len, stdin)) != -1)
+	while ((read = _getline(&line, &len, stdin)) != -1)
 	{
 		_len = _strlen(line);
 		line[_len - 1] = '\0';
