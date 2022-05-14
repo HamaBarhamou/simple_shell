@@ -31,5 +31,6 @@ char *_strtok(char *str, const char *delim);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 instruction_l *add_nodeinstruction_end(instruction_l **head, char *str);
 instruction_l **list_instrctions(instruction_l **head, char *str);
+char *_strdup(char *src);
 
 #endif
