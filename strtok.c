@@ -1,4 +1,5 @@
 #include "main.h"
+#include <string.h>
 
 /**
  * _strtok - a function ...
@@ -12,7 +13,5 @@ char	*_strtok(char *str, const char *delim)
 {
 	/* implement your code, see man strtok*/
 
-	UNUSED(str);
-	UNUSED(delim);
-	return (NULL);
+	return (strtok(str, delim));
 }
