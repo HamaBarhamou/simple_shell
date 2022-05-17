@@ -1,4 +1,7 @@
 #include "main.h"
+#include <errno.h>
+#include <string.h>
+#include <stdlib.h>
 
 /**
  * _getline - a function ...
@@ -12,10 +15,6 @@
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 {
 	/* implement your code, see man strtok*/
-
-	UNUSED(lineptr);
-	UNUSED(n);
-	UNUSED(stream);
-
+	
 	return (getline(lineptr, n, stream));
 }
