@@ -9,14 +9,16 @@
  * _arguments - a function
  * @str: the chaine of the caractere
  * @arglist: the list of list argument
+ * @separator: the const chaine
+ *
  * Return: the chaine
  */
 
-char **_arguments(char *str, char **arglist)
+char **_arguments(char *str, char **arglist, const char *separator)
 {
 	char *cmd = _strdup(str);
 	char *arg;
-	const char *separator = " ";
+	/*const char *separator = " ";*/
 	int i = 0;
 
 	arg = _strtok(cmd, separator);
@@ -44,22 +46,30 @@ int main(int argc, char **argv, char **env)
 	size_t len = 0;
 	ssize_t read;
 	int i = 0, status = 0, _len;
-	char *arg_list[MAX_LINE];
+	char *arg_list[MAX_LINE];/* *instruc[MAX_LINE];*/
+	/*int k = 0;*/
 
 	_puts("($) ");
 	while ((read = _getline(&line, &len, stdin)) != -1)
 	{
-		_len = _strlen(line);
-		line[_len - 1] = '\0';
-		_puts("($) ");
-		if (strncmp("exit", line, 4) == 0)
+		/*_arguments(line, instruc, ";");*/
+		/*while (instruc[k] != NULL)*/
 		{
-			if (_len > 4)
-				status = atoi(&line[5]);
-			free(line);
-			exit(status);
+			/*line = instruc[k];*/
+			_len = _strlen(line);
+			line[_len - 1] = '\0';
+			_puts("($) ");
+			if (strncmp("exit", line, 4) == 0)
+			{
+				if (_len > 4)
+					status = atoi(&line[5]);
+				free(line);
+				exit(status);
+			}
+
+			_executecmd(_arguments(line, arg_list, " "), argc, argv, env);
+			/*k++;*/
 		}
-		_executecmd(_arguments(line, arg_list), argc, argv, env);
 	}
 
 	if (line)
