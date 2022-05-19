@@ -79,6 +79,6 @@ int main(int argc, char **argv, char **env)
 	UNUSED(argv);
 	UNUSED(env);
 	UNUSED(i);
-	UNUSED(arg_list);
+	/*UNUSED(arg_list);*/
 	return (0);
 }

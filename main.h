@@ -33,4 +33,7 @@ instruction_l *add_nodeinstruction_end(instruction_l **head, char *str);
 instruction_l **list_instrctions(instruction_l **head, char *str);
 char *_strdup(char *src);
 
+/*Realloc and assign lineptr*/
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+void assign_lineptr(char **lineptr, size_t *n, char *buffer, size_t b);
 #endif
