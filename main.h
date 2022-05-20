@@ -36,4 +36,5 @@ char *_strdup(char *src);
 /*Realloc and assign lineptr*/
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void assign_lineptr(char **lineptr, size_t *n, char *buffer, size_t b);
+char *_strcpy(char *dest, const char *src);
 #endif
