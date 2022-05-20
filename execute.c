@@ -48,13 +48,10 @@ void	_executecmd(char **cmd, int argc, char **argv, char **env)
 
 	shell_1_0(cmd[0], env);
 	cmdsrc = (char *) malloc((_strlen(cmd[0]) + 6) * sizeof(char));
+
 	if (strncmp("/bin/", cmd[0], 5) != 0)
-	{
 		cmdsrc = _strcat(cmdsrc, "/bin/");
-		cmdsrc = _strcat(cmdsrc, cmd[0]);
-	}
-	else
-		cmdsrc = _strcat(cmdsrc, cmd[0]);
+	cmdsrc = _strcat(cmdsrc, cmd[0]);
 	pid = fork();
 	if (pid < 0)
 	{
@@ -80,6 +77,6 @@ void	_executecmd(char **cmd, int argc, char **argv, char **env)
 		free(cmd[i]);
 		i++;
 	}
-	_puts("($) ");
+	/*_puts("\n");*/
 	UNUSED(argc);
 }

@@ -45,15 +45,15 @@ int main(int argc, char **argv, char **env)
 	char *line = NULL;
 	size_t len = 0;
 	ssize_t read;
-	int i = 0, status = 0, _len;
+	int status = 0, _len;
 	char *arg_list[MAX_LINE];
 
-	_puts("($) ");
+	/*_puts("($) ");*/
 	while ((read = _getline(&line, &len, stdin)) != -1)
 	{
 		_len = _strlen(line);
 		line[_len - 1] = '\0';
-		_puts("($) ");
+
 		if (strncmp("exit", line, 4) == 0)
 		{
 			if (_len > 4)
@@ -63,17 +63,16 @@ int main(int argc, char **argv, char **env)
 		}
 
 		_executecmd(_arguments(line, arg_list, " "), argc, argv, env);
-		/*_puts("\n");*/
 		/*_puts(line);*/
+		_puts("($) ");
 	}
-
+	_puts("\n");
 	if (line)
 		free(line);
 
+	UNUSED(arg_list);
 	UNUSED(argc);
 	UNUSED(argv);
 	UNUSED(env);
-	UNUSED(i);
-	UNUSED(arg_list);
 	return (0);
 }
