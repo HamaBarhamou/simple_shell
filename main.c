@@ -64,9 +64,8 @@ int main(int argc, char **argv, char **env)
 
 		_executecmd(_arguments(line, arg_list, " "), argc, argv, env);
 		/*_puts(line);*/
-		_puts("($) ");
+		/*_puts("($) ");*/
 	}
-	_puts("\n");
 	if (line)
 		free(line);
 
